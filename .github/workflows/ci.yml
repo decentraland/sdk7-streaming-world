@@ -52,6 +52,16 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.SDK_TEAM_AWS_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.SDK_TEAM_AWS_SECRET }}
+      - name: Trigger AB Conversion
+        run: |
+          # WebGL
+          npx @dcl/opscli@latest queue-ab-conversion-about --token ${{ secrets.AB_TOKEN }} --ab-server https://asset-bundle-converter-windows.decentraland.org --about-url ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/streaming-world-${{ github.sha }})
+
+          # Windows
+          npx @dcl/opscli@latest queue-ab-conversion-about --token ${{ secrets.AB_TOKEN }} --ab-server https://asset-bundle-converter-windows.decentraland.org --about-url ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/streaming-world-${{ github.sha }})
+
+          # Mac
+          npx @dcl/opscli@latest queue-ab-conversion-about --token ${{ secrets.AB_TOKEN }} --ab-server https://asset-bundle-converter-mac.decentraland.org --about-url ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/streaming-world-${{ github.sha }})
       - name: Find Comment
         uses: peter-evans/find-comment@v1
         if: ${{ github.event.pull_request.number }}
