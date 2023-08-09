@@ -55,7 +55,7 @@ jobs:
       - name: Trigger AB Conversion
         run: |
           # WebGL, Windows, Mac
-          npx @dcl/opscli@latest queue-ab-conversion-about --token ${{ secrets.AB_TOKEN }} --crossplatform --about-url ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{steps.get-branch-realm-name.outputs.result}}
+          npx @dcl/opscli@latest queue-ab-conversion-about --token ${{ secrets.AB_TOKEN }} --crossplatform --about-url ${{ secrets.SDK_TEAM_S3_BASE_URL }}/ipfs/${{steps.get-branch-realm-name.outputs.result}}/about
       - name: Find Comment
         uses: peter-evans/find-comment@v1
         if: ${{ github.event.pull_request.number }}
